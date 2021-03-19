@@ -1,0 +1,29 @@
+def ItemToFind():
+    num = int(input("Please enter a number\n"))
+    return num
+
+def FindMidPoint(Min,Max):
+    midpoint = (Min + Max)//2
+    return midpoint
+
+def BinarySearch(List, ItemToFind, Min, Max):   # this is recursive as it calls itself
+    MidPoint = FindMidPoint(Min,Max)
+    if List[MidPoint] < ItemToFind:
+        BinarySearch(List, ItemToFind, MidPoint + 1, Max)
+    elif List[MidPoint] > ItemToFind:
+        BinarySearch(List, ItemToFind, Min, MidPoint - 1)
+    elif List[MidPoint] == ItemToFind:
+        print('found at ' + str(MidPoint))
+    else:
+        print('not found ')
+
+#
+# MAIN
+#
+List = [1,2,3,4,5,6,7,8,9,10,11,12]
+Min = 0
+Max = 11
+print (List)
+x = ItemToFind()
+BinarySearch(List, x, Min, Max) 
+
