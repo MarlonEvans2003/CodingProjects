@@ -1,0 +1,295 @@
+import io
+# prints welcome message
+print("*****************************************")
+print("*                                       *")
+print("*                                       *")
+print("*                                       *")
+print("*          Welome To HSDC Bank!         *")
+print("*                                       *")
+print("*                                       *")
+print("*                                       *")
+print("*****************************************")
+
+# reads the card that is set and sets it to variable
+with open("Card.txt", "r")as f:
+    ReadCard = f.read()
+    ReadCard = str(ReadCard)
+# reads the pin that is set and sets it to variable
+with open("Pin.txt", "r")as f:
+    ReadPin = f.read()
+    ReadPin = str(ReadPin)
+# reads the balance that is set and sets it to variable
+with open("Balance.txt", "r")as f:
+    ReadBalance = f.read()
+    ReadBalance = float(ReadBalance)
+
+
+# function to set the input into a variable card
+def AskForCard():
+    Card = input("What is your Card? ")
+    return Card
+# function to set the input into a variable pin
+def AskForPin():
+    Pin = input("What is the Pin? ")
+    return Pin
+
+# function to return true if the read card equals the card they put in
+def CheckIfCardTrue(Card):
+    if Card == ReadCard:
+        return True
+    else:
+        return False
+# function to return true if the read pin equals the pin they put in
+def CheckIfPinTrue(Pin):
+    if Pin == ReadPin:
+        return True
+    else:
+        return False
+# Opening menu of options
+def OutputMenu():
+    print("*****************************************")
+    print("*                                       *")
+    print("*  1 - View Balance  2 - Withdraw Cash  *")
+    print("*                                       *")
+    print("*  3 - Change Pin    4 - Insert Cheque  *")
+    print("*                                       *")
+    print("*  5. Exit                              *")
+    print("*                                       *")
+    print("*****************************************")
+
+# Shows the balance in real time chaning if you withdraw or input cash
+def ViewBalance():
+    global ReadBalance
+    print("*****************************************")
+    print("*                                       *")
+    print("*      Current Balance  :", ReadBalance ,"          *")
+    print("*                                       *")
+    print("*      Avalable Balance :", ReadBalance ,"          *")
+    print("*                                       *")
+    print("*      1. Back          2. Exit         *")
+    print("*                                       *")
+    print("*****************************************")
+# displays options for withdrawing cash
+def WithdrawCash():
+    print("*****************************************")
+    print("*      1. £10           2. £20          *")
+    print("*                                       *")
+    print("*      3. £40           4. £80          *")
+    print("*                                       *")
+    print("*      5. £100          6. £150         *")
+    print("*                                       *")
+    print("*      7. Back          8. Exit         *")
+    print("*****************************************")
+# Asks what pin they want to change it two and displays this
+def ChangePin():
+    print("*****************************************")
+    print("*                                       *")
+    print("*                                       *")
+    print("*         You want to change            *")
+    print("*          your pin to what:            *")
+    print("*                                       *")
+    print("*                                       *")
+    print("*****************************************")
+# Asks user how much is in Cheque
+def IncertCheque():
+    print("*****************************************")
+    print("*                                       *")
+    print("*                                       *")
+    print("*           How much is the             *")
+    print("*               Cheque?                 *")
+    print("*                                       *")
+    print("*                                       *")
+    print("*****************************************")
+# Sends a goodbye message when user wants to exit
+def GoodbyeMessage():
+    print("*****************************************")
+    print("*                                       *")
+    print("*                                       *")
+    print("*         Thank you for using           *")
+    print("*              HSDC Bank                *")
+    print("*                                       *")
+    print("*                                       *")
+    print("*****************************************")
+
+#Prints insufficient funds
+def InsufficientFunds():
+    print("*****************************************")
+    print("*                                       *")
+    print("*                                       *")
+    print("*              Insufficent              *")
+    print("*                 Funds                 *")
+    print("*                                       *")
+    print("*                                       *")
+    print("*****************************************")
+
+
+Count = 2
+#Ask for the pin and Card and sets variables
+Card = AskForCard()
+Pin = AskForPin()
+# Makes a loop that ends only when user wants to leave
+while Count < 4:
+    #Check if card and pin both true
+    if CheckIfCardTrue(Card) and CheckIfPinTrue(Pin) == True:
+        #outputs menu
+        OutputMenu()
+        #gets users choice
+        UserChoice = int(input("What Would you like to do ?: "))
+        if UserChoice == 1:
+            ViewBalance()
+            #gets users choice
+            Choice_2 = int(input("Enter a Number: "))
+            #gets back to the menu
+            if Choice_2 == 1:
+                Count = 0
+            else:
+                #outputs goodbye message
+                GoodbyeMessage()
+                break
+        elif UserChoice == 2:
+            # Withdraw cash options output
+            WithdrawCash()
+            #gets users choice
+            Choice_3 = int(input("Enter a Number: "))
+            #check what it should do with the choice
+            if Choice_3 == 1:
+                #checks if you have enough money to withdraw
+                if ReadBalance >= 10:
+                    #withdraws the money from balance and outputs money
+                    print("Here is Your £10")
+                    ReadBalance = ReadBalance - 10
+                    # writes the new balance in and goes back to menu
+                    with open("Balance.txt", "w") as f:
+                        f.write(str(ReadBalance))
+                        Count = 0
+                else:
+                    #outputs that you dont have enough
+                    InsufficientFunds()
+                    Count = 0
+                   
+            elif Choice_3 == 2:
+                #checks if you have enough money to withdraw
+                if ReadBalance >= 20:
+                    #withdraws the money from balance and outputs money
+                    print("Here is Your £20")
+                    ReadBalance = ReadBalance - 20
+                    # writes the new balance in and goes back to menu
+                    with open("Balance.txt", "w") as f:
+                        f.write(str(ReadBalance))
+                        Count = 0
+                else:
+                    # Outputs you dont have enough
+                    InsufficientFunds()
+                    Count = 0
+            elif Choice_3 == 3:
+                #checks if you have enough money to withdraw
+                if ReadBalance >= 40:
+                    #withdraws the money from balance and outputs money
+                    print("Here is Your £40")
+                    ReadBalance = ReadBalance - 40
+                    # writes the new balance in and goes back to menu
+                    with open("Balance.txt", "w") as f:
+                        f.write(str(ReadBalance))
+                        Count = 0
+                else:
+                    # Outputs you dont have enough
+                    InsufficientFunds()
+                    Count = 0
+            elif Choice_3 == 4:
+                #checks if you have enough money to withdraw
+                if ReadBalance >= 80:
+                    #withdraws the money from balance and outputs money
+                    print("Here is Your £80")
+                    ReadBalance = ReadBalance - 80
+                    # writes the new balance in and goes back to menu
+                    with open("Balance.txt", "w") as f:
+                        f.write(str(ReadBalance))
+                        Count = 0
+                else:
+                    # Outputs you dont have enough
+                    InsufficientFunds()
+                    Count = 0
+            elif Choice_3 == 5:
+                #checks if you have enough money to withdraw
+                if ReadBalance >= 100:
+                    #withdraws the money from balance and outputs money
+                    print("Here is Your £100")
+                    ReadBalance = ReadBalance - 100
+                    # writes the new balance in and goes back to menu
+                    with open("Balance.txt", "w") as f:
+                        f.write(str(ReadBalance))
+                        Count = 0
+                else:
+                    # Outputs you dont have enough
+                    InsufficientFunds()
+                    Count = 0
+            elif Choice_3 == 6:
+                #checks if you have enough money to withdraw
+                if ReadBalance >= 150:
+                    #withdraws the money from balance and outputs money
+                    print("Here is Your £150")
+                    ReadBalance = ReadBalance - 150
+                    # writes the new balance in and goes back to menu
+                    with open("Balance.txt", "w") as f:
+                        f.write(str(ReadBalance))
+                        Count = 0
+                else:
+                    # Outputs you dont have enough
+                    InsufficientFunds()
+                    Count = 0
+            elif Choice_3 == 7:
+                # Goes back to menu
+                Count = 0
+            elif Choice_3 == 8:
+                #outputs goodbye
+                GoodbyeMessage()
+                break
+
+        elif UserChoice == 3:
+            #Changes pin
+            ChangePin()
+            #gets users new pin
+            Choice_4 = int(input("Enter New Pin: "))
+            MyPin = str(Choice_4)
+            #writes new pin to file and goes backto menu
+            with open("Pin.txt", "w") as f:
+                f.write(str(MyPin))
+                Count = 0
+        elif UserChoice == 4:
+            #outputs incert cheque
+            IncertCheque()
+            #sets the amount on check in variable
+            Choice_5 = int(input("Pleasue input amount on cheque: £"))
+            ReadBalance = ReadBalance + Choice_5
+            #writes the new balance to a file
+            with open("Balance.txt", "w") as f:
+                f.write(str(ReadBalance))
+            #prints that its been deposited
+            print("£",Choice_5, "Has been deposited in your Account")
+            Count = 0
+
+        elif UserChoice == 5:
+            #outputs exit
+            GoodbyeMessage()
+            break
+
+    else:
+        # if card not true outputs error
+        print("Card Declined ERROR")
+        # outputs if they want to try again
+        Choice = input("Do you want to try again? Yes / No :  ")
+        #checks there options
+        if Choice == "Yes":
+            #if yes asks again and count plus 1
+            Card = AskForCard()
+            Pin = AskForPin()
+            Count = Count + 1
+        else:
+            #exit money
+            GoodbyeMessage()
+            break
+
+
+if Count == 4:
+    #if more than 4 times tried locks the account
+        print("ACCOUNT LOCKED")
