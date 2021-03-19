@@ -1,0 +1,115 @@
+import webbrowser
+def MainMenu():
+    # Welcome message that asks the first options (Food choices)
+    #
+    print("***********************************************")
+    print("***********************************************")
+    print("***                                         ***")
+    print("***      Welcome to the Foodie ChatBot      ***")
+    print("***                                         ***")
+    print("***      Please Select what Kind of Food,   ***")
+    print("***      You would like to eat today?       ***")
+    print("***                                         ***")
+    print("***      1. Chinese                         ***")
+    print("***      2. Indian                          ***")
+    print("***      3. Turkish                         ***")
+    print("***                                         ***")
+    print("***********************************************")
+    print("***********************************************")
+    choice = int(input('Select 1, 2 or 3 \n'))
+    if choice != 1 and choice !=2 and choice !=3:
+        choice = input('You must either enter 1, 2 or 3\n')
+    if choice == 1:
+        return "Chinese"
+    if choice == 2:
+        return "Indian"
+    if choice == 3:
+        return "Turkish"
+def PriceMenu():
+    # Second option menu that asks for the user's desired budget option
+    print("***********************************************")
+    print("***********************************************")
+    print("***                                         ***")
+    print("***      What is Your Budget?               ***")
+    print("***                                         ***")
+    print("***      1. Low                             ***")
+    print("***      2. Medium                          ***")
+    print("***      3. Expensive                       ***")
+    print("***                                         ***")
+    print("***********************************************")
+    print("***********************************************")
+    choice = int(input('Select 1, 2 or 3 \n'))
+    while choice != 1 and choice !=2 and choice !=3:
+        choice = input('You must either enter 1, 2 or 3\n')
+    if choice == 1:
+        return "Low"
+    if choice == 2:
+        return "Medium"
+    if choice == 3:
+        return "High"
+def LocationMenu():
+    # Thirs option menu that asks for user's desired location
+    for x in range(909999999999999999999999999999999):
+        print("***********************************************")
+...cticeOne\ESPprojectPracticeOne\ESPprojectPracticeOne.py 2
+        print("***********************************************")
+        print("***                                         ***")
+        print("***      Which Location Would You Like?     ***")
+        print("***                                         ***")
+        print("***      1. Fratton                         ***")
+        print("***      2. Southsea                        ***")
+        print("***      3. Old Portsmouth                  ***")
+        print("***                                         ***")
+        print("***********************************************")
+        print("***********************************************")
+        choice = int(input('Select 1, 2 or 3 \n'))
+        while choice != 1 and choice !=2 and choice !=3:
+            choice = input('You must either enter 1, 2 or 3\n')
+        if choice == 1:
+            return "Fratton"
+        elif choice == 2:
+            return "SouthSea"
+        elif choice == 3:
+            return "Old_Portsmouth"
+        return choice
+#
+#
+def FindRest(FoodType, PriceLevel, Location):
+      for line in open('Food.txt',"r").readlines(): # Read the lines
+        #global cust_info
+Food_info = line.split() # Split on the space, and store the results in a
+list of two strings
+        if Food_info == None:    # EOF reached
+            return[False]
+if PriceLevel == Food_info[2] and FoodType == Food_info[0] and Location ==
+Food_info[3]:  #Reads the file and matches up with the correct
+information within said file
+            print("Restaurant found for "+ Food_info[0] + "named " + Food_info[1] )
+return [True, Food_info[0], Food_info[1], Food_info[2], Food_info[3],
+Food_info[4]]
+#################
+#               #
+# Main Program  #
+#               #
+#################
+Food = MainMenu() # Main program that calls our definitions
+locate = LocationMenu()
+PriceLevel = PriceMenu()
+Find = FindRest(Food, PriceLevel, locate)
+if Find == None:
+print("no restaurant has met your criteria") # Code that tells the user that
+the options have not matched with anything
+else:
+print("We have found you a restaurant called" + Find[2]) # Code outputs the
+options according to the user's previous options
+YN = input("Would you like to go the website?") # code asks the user if they
+want to open the website url
+    if YN.upper() == "Y": # code opens up the url if the user desires
+          input("We are about to take you there")
+...cticeOne\ESPprojectPracticeOne\ESPprojectPracticeOne.py 3
+          url = Find [5]
+          webbrowser.open(url, new=0, autoraise=True)
+          print(Find)
+    elif YN.upper() == "N":
+print("Okay, have a good day! ") # Code that ends the program if the user
+does not want to open up the url
