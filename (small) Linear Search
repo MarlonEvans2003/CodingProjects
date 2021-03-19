@@ -1,0 +1,20 @@
+
+list = [14,19,23,28,31,39,43,47]
+Found = False
+i = 0
+SizeArray = 9
+SearchValue = 41
+
+#
+#
+#
+
+for i in range (0, (len(list))):
+    if SearchValue == list[i]:
+        print("Found True")
+        break
+    elif SearchValue < list[i]:
+        break
+    else:
+        print("False")
+ 
