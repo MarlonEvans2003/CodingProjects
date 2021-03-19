@@ -1,0 +1,24 @@
+numpass = int(input("How many people were on the flight: "))
+
+def AirportTax():
+    airport = input (str("What airport did the flight arrive to: "))
+    if airport == "Heathrow":
+        tax = numpass *50
+        return tax
+    elif airport == "Gatwick":
+        tax = numpass *40
+        return tax
+    elif airport == "Manchester":
+        tax = numpass *30
+        return tax
+    elif airport == "Southampton":
+        tax = numpass *50
+        return tax
+    elif airport == "Luton":
+        tax = numpass * 20
+        return tax
+    else:
+        print("Invalid")
+
+tax2 = AirportTax()
+print ("Total tax is: £",tax2)
